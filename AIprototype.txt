@@ -1,0 +1,139 @@
+randomizePlayer: () => {
+        const random = Math.random();
+        random < 0.5 ? (model.playerTurn = true) : (model.playerTurn = false);
+        model.playerTurn === true
+            ? (model.compColor = "red")
+            : (model.compColor = "white");
+    },
+
+
+
+
+
+
+
+
+
+
+
+getRandomField: () => {
+        if (model.compColor === "red") {
+            var compChecker = "r";
+            var compKing = "rk";
+        } else {
+            var compChecker = "w";
+            var compKing = "wk";
+        }
+        function checkFields(
+            firstRow,
+            firstCol,
+            secondRow,
+            secondCol,
+            thirdRow,
+            thirdCol
+        ) {
+            if (
+                typeof model.board[firstRow][firstCol] !== "undefined" &&
+                model.board[firstRow][firstCol] === "" &&
+                (typeof model.board[secondRow][secondCol] === "undefined" ||
+                    model.board[secondRow][secondCol] === "" ||
+                    model.board[secondRow][secondCol] === compChecker ||
+                    model.board[secondRow][secondCol] === compKing ||
+                    (typeof model.board[thirdRow][thirdCol] === "undefined" ||
+                        model.board[secondRow][secondCol] === "" ||
+                        model.board[thirdRow][thirdCol] === compChecker ||
+                        model.board[thirdRow][thirdCol] === compKing))
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function approveField(row, col) {
+            const fields = [];
+            if (model.compColor === "red") {
+                if (
+                    checkFields(
+                        row + 1,
+                        col - 1,
+                        row + 2,
+                        col - 2,
+                        row + 2,
+                        col
+                    )
+                ) {
+                    fields.push(`${row + 1}${col - 1}`);
+                }
+                if (
+                    checkFields(
+                        row + 1,
+                        col + 1,
+                        row + 2,
+                        col + 2,
+                        row + 2,
+                        col
+                    )
+                ) {
+                    fields.push(`${row + 1}${col + 1}`);
+                }
+            } else {
+                if (
+                    checkFields(
+                        row - 1,
+                        col - 1,
+                        row - 2,
+                        col - 2,
+                        row - 2,
+                        col
+                    )
+                ) {
+                    fields.push(`${row - 1}${col - 1}`);
+                }
+                if (
+                    checkFields(
+                        row - 1,
+                        col + 1,
+                        row - 2,
+                        col + 2,
+                        row - 2,
+                        col
+                    )
+                ) {
+                    fields.push(`${row - 1}${col + 1}`);
+                }
+            }
+            return fields;
+        }
+        let iteration = 0;
+        do {
+            do {
+                var randomRow = Math.floor(Math.random() * 8);
+                var randomCol = Math.floor(Math.random() * 8);
+                iteration++;
+            } while (
+                model.board[randomRow][randomCol] !== compChecker &&
+                iteration < 500
+            );
+            if (iteration < 500) {
+                var fields = approveField(randomRow, randomCol);
+            } else {
+                var fields = [];
+            }
+        } while (fields.length === 0 && iteration < 500);
+        if (fields.length > 0) {
+            const randomField = Math.floor(Math.random() * fields.length);
+            return fields[randomField];
+        } else {
+            do {
+                var randomRow = Math.floor(Math.random() * 8);
+                var randomCol = Math.floor(Math.random() * 8);
+                console.log(randomRow);
+                console.log(randomCol);
+                var fields = model.possibleFields(
+                    document.getElementById(`field${randomRow}${randomCol}`)
+                );
+            } while (fields.length === 0);
+            const randomField = Math.floor(Math.random() * fields.length);
+            return fields[randomField];
+        }
+    }

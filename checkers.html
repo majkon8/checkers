@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>The Checkers</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="checkers.css" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Artifika"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <div id="main-menu" class="options">
+            <div class="logo">
+                <h1>The Checkers</h1>
+            </div>
+            <div id="main-menu-options">
+                <h2 id="new-game-option" class="main-menu-option">
+                    New Game
+                </h2>
+                <h2 id="load-game-option" class="main-menu-option">
+                    Load Game
+                </h2>
+            </div>
+        </div>
+        <div id="main-container">
+            <div id="menu-button">MENU</div>
+            <div class="red-score score">
+                <h1>Checkers: <span id="red-checkers">12</span></h1>
+                <div id="red-turn-indicator" class="turn-indicator"></div>
+                <h1>Kings: <span id="red-kings">0</span></h1>
+            </div>
+            <div id="board"></div>
+            <div class="white-score score">
+                <h1>Checkers: <span id="white-checkers">12</span></h1>
+                <div id="white-turn-indicator" class="turn-indicator"></div>
+                <h1>Kings: <span id="white-kings">0</span></h1>
+            </div>
+            <div id="in-game-menu">
+                <div class="logo">
+                    <h1>The Checkers</h1>
+                </div>
+                <div id="in-game-menu-options">
+                    <h2 id="resume-game" class="in-game-menu-option">
+                        Resume Game
+                    </h2>
+                    <h2 id="save-game" class="in-game-menu-option">
+                        Save Game
+                    </h2>
+                    <h2 id="load-game" class="in-game-menu-option">
+                        Load Game
+                    </h2>
+                    <h2 id="go-to-main-menu" class="in-game-menu-option">
+                        Main Menu
+                    </h2>
+                </div>
+                <div id="sure-pop-up">
+                    <h1>
+                        This will reset your current game progress, do you want
+                        to continue?
+                    </h1>
+                    <button id="sure-yes" class="sure-button">Yes</button>
+                    <button id="sure-no" class="sure-button">No</button>
+                </div>
+            </div>
+        </div>
+        <script src="checkers.js"></script>
+    </body>
+</html>
