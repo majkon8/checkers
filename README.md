@@ -1,3 +1,4 @@
 # checkers
-One of my first projects, build with pure JS.
+One of my first projects ever, build with pure JS.
 # Live preview
+https://majkon8.github.io/checkers/
